@@ -39,6 +39,7 @@ public:
 	bool isLeapYear () const;	
 	bool isLeapYear(auto year);
 	bool operator==(const Date& rhs) const;
+	void increaseDay();
 
 private:
 	// return the number of days in the _month

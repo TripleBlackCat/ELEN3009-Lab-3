@@ -102,3 +102,28 @@ bool Date::operator==(const Date& rhs) const
 	else
 		return false;
 }
+
+void Date::increaseDay()
+{
+	int monthCurrDays = daysInMonth();
+	
+	if(monthCurrDays < _day + 1)
+	{
+		_day = 1;
+		if(static_cast<int>(_month) == 12)
+		{
+			_month = Month::January;
+			_year += 1;
+		}
+		else
+		{
+			int tempMonth = static_cast<int>(_month);
+			tempMonth += 1;
+			_month = static_cast<Month>(tempMonth);
+		}
+	}
+	else
+	{
+		_day += 1;
+	}
+}

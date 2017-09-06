@@ -63,8 +63,22 @@ TEST_CASE("Years do not Match"){
 }
 
 // Exercise 2.4
-// Provide tests for a new member function of the Date class
-// which will increase the date by one day.
+TEST_CASE("Days Increase Correct"){
+	Date date_1(1, Month::January, 2000);
+	Date date_2(2, Month::January, 2000);
+	date_1.increaseDay();
+	CHECK(date_1 == date_2);
+	
+	Date date_3(31, Month::January, 2000);
+	Date date_4(1, Month::February, 2000);
+	date_3.increaseDay();
+	CHECK(date_3 == date_4);
+	
+	Date date_5(31, Month::December, 1999);
+	Date date_6(1, Month::January, 2000);
+	date_5.increaseDay();
+	CHECK(date_5 == date_6);
+}
 
 
 // Exercise 2.5
