@@ -2,14 +2,13 @@
 // Implementation of the Date class
 
 #include "date.h"
-#include <iostream>
 
 Date::Date(int D, Month M,int Y)
 {
 	if(D > 31) throw InvalidDate();
 	if((isLeapYear(Y) == false) && (D > 28) && (M == Month::February)) throw InvalidDate();
 	if((M == Month::February || M ==  Month::April || M ==  Month::June || M ==  Month::September || M == Month::November) && D > 30) throw InvalidDate();
-	
+
 	_day = D;
 	_month = M;
 	_year = Y;
@@ -36,7 +35,7 @@ bool Date::isLeapYear() const
     // or divisible by 400
     if(((_year % 4 == 0) && (_year % 100 != 0)) || (_year % 400 == 0))
         return true;
-	else
+    else
         return false;
 }
 
@@ -82,4 +81,24 @@ bool Date::isLeapYear(auto year)
         return true;
 	else
         return false;
+}
+
+bool Date::operator==(const Date& rhs) const
+{
+	bool condition = false;
+	if(_day == rhs._day)
+	{
+		if(_month == rhs._month)
+		{
+			if(_year == rhs._year)
+			{
+				condition = true;
+			}
+		}
+	}
+			
+	if(condition == true)
+		return true;
+	else
+		return false;
 }

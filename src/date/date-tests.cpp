@@ -38,17 +38,29 @@ TEST_CASE("Invalid Date is rejected"){
 }
 
 // Exercise 2.3
-//TEST_CASE("Identical Dates are Equal") {
-//    Date date_1(1, Month::January, 2000);
-//    Date date_2(1, Month::January, 2000);
-//
-//    CHECK(date_1 == date_2);
-//}
+TEST_CASE("Identical Dates are Equal") {
+	Date date_1(1, Month::January, 2000);
+	Date date_2(1, Month::January, 2000);
+	CHECK(date_1 == date_2);	
+}
 
-// Supply at least three additional tests for
-// the equality operator here, to ensure that
-// it is working correctly.
+TEST_CASE("Days do not Match"){
+	Date date_1(28, Month::February, 2000);
+	Date date_2(27, Month::February, 2000);
+	CHECK_FALSE(date_1 == date_2);
+}
 
+TEST_CASE("Months do not Match"){
+	Date date_1(5, Month::May, 1994);
+	Date date_2(5, Month::April, 1994);
+	CHECK_FALSE(date_1 == date_2);
+}
+
+TEST_CASE("Years do not Match"){
+	Date date_1(5, Month::April, 1993);
+	Date date_2(5, Month::April, 1994);
+	CHECK_FALSE(date_1 == date_2);
+}
 
 // Exercise 2.4
 // Provide tests for a new member function of the Date class
