@@ -28,11 +28,14 @@ TEST_CASE("Valid Date is initialised correctly") {
 
 
 // Exercise 2.2
-// Supply additional tests for the constructor here, which
-// verify that an exception is thrown when an attempt is made
-// to construct an invalid date. Think carefully about which
-// invalid dates to test.
-
+TEST_CASE("Invalid Date is rejected"){
+	CHECK_THROWS_AS(Date testDate(99, Month::September, 2000), InvalidDate);
+	CHECK_THROWS_AS(Date testDate(29, Month::February, 1999), InvalidDate);
+	CHECK_THROWS_AS(Date testDate(31, Month::April, 1999), InvalidDate);
+	CHECK_THROWS_AS(Date testDate(31, Month::June, 1999), InvalidDate);
+	CHECK_THROWS_AS(Date testDate(31, Month::September, 1999), InvalidDate);
+	CHECK_THROWS_AS(Date testDate(31, Month::November, 1999), InvalidDate);
+}
 
 // Exercise 2.3
 //TEST_CASE("Identical Dates are Equal") {

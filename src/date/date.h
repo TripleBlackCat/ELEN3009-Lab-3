@@ -3,6 +3,8 @@
 // date.h
 // class Date declaration
 
+class InvalidDate {};
+
 #include <cassert>
 #include <iostream>
 using namespace std;
@@ -35,6 +37,7 @@ public:
 	int year () const;
 	// return true if it is a leap-year, false if not
 	bool isLeapYear () const;	
+	bool isLeapYear(auto year);
 
 private:
 	// return the number of days in the _month
