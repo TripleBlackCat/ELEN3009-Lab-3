@@ -3,6 +3,22 @@
 
 #include "date.h"
 
+Date Date::_default{1, Month::January, 1900};
+
+void Date::setDefaultDate(int day, Month month, int year)
+{
+	_default._day = day;
+	_default._month = month;
+	_default._year = year;
+}
+
+Date::Date()
+{
+	_day   = _default.day();
+	_month = _default.month();
+	_year  = _default.year();
+}
+
 Date::Date(int D, Month M,int Y)
 {
 	if(D > 31) throw InvalidDate();

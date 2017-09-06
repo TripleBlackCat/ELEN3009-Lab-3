@@ -82,5 +82,13 @@ TEST_CASE("Days Increase Correct"){
 
 
 // Exercise 2.5
-// Write tests for the new default constructor and the
-// setDefaultDate method.
+TEST_CASE("Default Constructors"){
+	Date testDate1(1, Month::January, 1900);
+	Date defaultDate1;
+	CHECK(testDate1 == defaultDate1);
+	
+	Date::setDefaultDate(5,Month::August,1900);
+	Date defaultDate2;
+	Date testDate2(5, Month::August, 1900);
+	CHECK(testDate2 == defaultDate2);
+}

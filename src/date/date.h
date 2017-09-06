@@ -29,6 +29,10 @@ class Date
 {
 public:	
 	Date(int D, Month M,int Y);
+	
+	static void setDefaultDate(int day, Month month, int year);
+	
+	Date();
 	// return the day of the month
 	int	day () const;
 	// return the month of the year
@@ -48,7 +52,8 @@ private:
 	int	_day;
 	Month _month;
 	int	_year;
-
+	
+	static Date _default;
 };
 
 // standalone function for printing the date
