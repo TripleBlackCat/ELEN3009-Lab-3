@@ -26,6 +26,7 @@ enum class Month
 class Date
 {
 public:	
+	Date(int D, Month M,int Y);
 	// return the day of the month
 	int	day () const;
 	// return the month of the year

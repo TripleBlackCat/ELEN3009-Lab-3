@@ -3,6 +3,13 @@
 
 #include "date.h"
 
+Date::Date(int D, Month M,int Y)
+{
+	_day = D;
+	_month = M;
+	_year = Y;
+}
+
 int Date::day() const
 {
 	return _day;
