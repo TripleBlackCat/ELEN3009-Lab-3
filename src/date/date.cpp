@@ -3,6 +3,33 @@
 
 #include "date.h"
 
+Date Date::_default{1, Month::January, 1900};
+
+void Date::setDefaultDate(int day, Month month, int year)
+{
+	_default._day = day;
+	_default._month = month;
+	_default._year = year;
+}
+
+Date::Date()
+{
+	_day   = _default.day();
+	_month = _default.month();
+	_year  = _default.year();
+}
+
+Date::Date(int D, Month M,int Y)
+{
+	if(D > 31) throw InvalidDate();
+	if((isLeapYear(Y) == false) && (D > 28) && (M == Month::February)) throw InvalidDate();
+	if((M == Month::February || M ==  Month::April || M ==  Month::June || M ==  Month::September || M == Month::November) && D > 30) throw InvalidDate();
+
+	_day = D;
+	_month = M;
+	_year = Y;
+}
+
 int Date::day() const
 {
 	return _day;
@@ -64,3 +91,55 @@ void printDate(const Date& date)
 		<< endl;
 }
 
+bool Date::isLeapYear(auto year)
+{
+	if(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+        return true;
+	else
+        return false;
+}
+
+bool Date::operator==(const Date& rhs) const
+{
+	bool condition = false;
+	if(_day == rhs._day)
+	{
+		if(_month == rhs._month)
+		{
+			if(_year == rhs._year)
+			{
+				condition = true;
+			}
+		}
+	}
+			
+	if(condition == true)
+		return true;
+	else
+		return false;
+}
+
+void Date::increaseDay()
+{
+	int monthCurrDays = daysInMonth();
+	
+	if(monthCurrDays < _day + 1)
+	{
+		_day = 1;
+		if(static_cast<int>(_month) == 12)
+		{
+			_month = Month::January;
+			_year += 1;
+		}
+		else
+		{
+			int tempMonth = static_cast<int>(_month);
+			tempMonth += 1;
+			_month = static_cast<Month>(tempMonth);
+		}
+	}
+	else
+	{
+		_day += 1;
+	}
+}
